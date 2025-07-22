@@ -1,0 +1,235 @@
+# backend/app/core/middleware.py
+from fastapi import Request, status
+from fastapi.responses import JSONResponse
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.middleware.cors import CORSMiddleware
+import time
+import uuid
+import logging
+from typing import Optional, Dict, Any,  Callable
+import json
+from datetime import datetime
+
+from app.core.exceptions import AppException
+from app.modules.auth.models import AuditLog
+from app.core.database import SessionLocal
+
+logger = logging.getLogger(__name__)
+
+class RequestIDMiddleware(BaseHTTPMiddleware):
+    """Add unique request ID to each request"""
+    
+    async def dispatch(self, request: Request, call_next: Callable):
+        request_id = str(uuid.uuid4())
+        request.state.request_id = request_id
+        
+        # Add request ID to response headers
+        response = await call_next(request)
+        response.headers["X-Request-ID"] = request_id
+        return response
+
+class LoggingMiddleware(BaseHTTPMiddleware):
+    """Log all requests and responses"""
+    
+    async def dispatch(self, request: Request, call_next: Callable):
+        start_time = time.time()
+        
+        # Log request
+        logger.info(
+            f"Request: {request.method} {request.url.path} "
+            f"from {request.client.host if request.client else 'unknown'}"
+        )
+        
+        response = await call_next(request)
+        
+        # Calculate request duration
+        duration = time.time() - start_time
+        
+        # Log response
+        logger.info(
+            f"Response: {response.status_code} "
+            f"Duration: {duration:.3f}s "
+            f"Path: {request.url.path}"
+        )
+        
+        # Add timing header
+        response.headers["X-Process-Time"] = str(duration)
+        
+        return response
+
+class ErrorHandlingMiddleware(BaseHTTPMiddleware):
+    """Global error handling middleware"""
+    
+    async def dispatch(self, request: Request, call_next: Callable):
+        try:
+            response = await call_next(request)
+            return response
+        except AppException as e:
+            # Handle custom application exceptions
+            return JSONResponse(
+                status_code=e.status_code,
+                content={
+                    "error": {
+                        "message": e.message,
+                        "type": e.__class__.__name__,
+                        "details": e.details,
+                        "request_id": getattr(request.state, "request_id", None)
+                    }
+                }
+            )
+        except Exception as e:
+            # Handle unexpected exceptions
+            logger.exception(f"Unhandled exception: {e}")
+            return JSONResponse(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                content={
+                    "error": {
+                        "message": "An unexpected error occurred",
+                        "type": "InternalServerError",
+                        "request_id": getattr(request.state, "request_id", None)
+                    }
+                }
+            )
+
+class AuditMiddleware(BaseHTTPMiddleware):
+    """Audit logging middleware for sensitive operations"""
+    
+    # Paths that should be audited
+    AUDIT_PATHS = [
+        "/api/v1/transactions",
+        "/api/v1/tanks/*/gauging",
+        "/api/v1/auth/login",
+        "/api/v1/auth/logout",
+        "/api/v1/users",
+        "/api/v1/reports"
+    ]
+    
+    def should_audit(self, path: str) -> bool:
+        """Check if path should be audited"""
+        for audit_path in self.AUDIT_PATHS:
+            if "*" in audit_path:
+                # Handle wildcard paths
+                pattern = audit_path.replace("*", "")
+                if pattern in path:
+                    return True
+            elif path.startswith(audit_path):
+                return True
+        return False
+    
+    async def dispatch(self, request: Request, call_next: Callable):
+        # Only audit specific paths
+        if not self.should_audit(request.url.path):
+            return await call_next(request)
+        
+        # Get request details
+        user_id = None
+        if hasattr(request.state, "user"):
+            user_id = request.state.user.id
+        
+        # Get request body for POST/PUT requests
+        body = None
+        if request.method in ["POST", "PUT", "PATCH"]:
+            body_bytes = await request.body()
+            request._body = body_bytes  # Store for later use
+            try:
+                body = json.loads(body_bytes) if body_bytes else None
+                # Remove sensitive data
+                if body and "password" in body:
+                    body = {**body, "password": "***"}
+            except:
+                body = None
+        
+        # Process request
+        response = await call_next(request)
+        
+        # Create audit log
+        db = SessionLocal()
+        try:
+            audit_log = AuditLog(
+                user_id=user_id,
+                action=f"{request.method} {request.url.path}",
+                resource_type=self._extract_resource_type(request.url.path),
+                resource_id=self._extract_resource_id(request.url.path),
+                ip_address=request.client.host if request.client else None,
+                user_agent=request.headers.get("User-Agent"),
+                request_method=request.method,
+                request_path=request.url.path,
+                response_status=response.status_code,
+                details=json.dumps({
+                    "query_params": dict(request.query_params),
+                    "body": body
+                }) if body else None
+            )
+            db.add(audit_log)
+            db.commit()
+        except Exception as e:
+            logger.error(f"Failed to create audit log: {e}")
+        finally:
+            db.close()
+        
+        return response
+    
+    def _extract_resource_type(self, path: str) -> Optional[str]:
+        """Extract resource type from path"""
+        parts = path.strip("/").split("/")
+        if len(parts) >= 3:
+            return parts[2]  # e.g., /api/v1/tanks -> tanks
+        return None
+    
+    def _extract_resource_id(self, path: str) -> Optional[str]:
+        """Extract resource ID from path"""
+        parts = path.strip("/").split("/")
+        if len(parts) >= 4:
+            # Check if the part looks like a UUID
+            potential_id = parts[3]
+            try:
+                uuid.UUID(potential_id)
+                return potential_id
+            except ValueError:
+                pass
+        return None
+
+class RateLimitMiddleware(BaseHTTPMiddleware):
+    """Simple rate limiting middleware"""
+    
+    def __init__(self, app, calls: int = 100, period: int = 60):
+        super().__init__(app)
+        self.calls = calls
+        self.period = period
+        self.clients = {}
+    
+    async def dispatch(self, request: Request, call_next: Callable):
+        # Get client identifier
+        client_id = request.client.host if request.client else "unknown"
+        
+        # Get current timestamp
+        now = time.time()
+        
+        # Initialize client data if not exists
+        if client_id not in self.clients:
+            self.clients[client_id] = []
+        
+        # Remove old entries
+        self.clients[client_id] = [
+            timestamp for timestamp in self.clients[client_id]
+            if now - timestamp < self.period
+        ]
+        
+        # Check rate limit
+        if len(self.clients[client_id]) >= self.calls:
+            return JSONResponse(
+                status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+                content={
+                    "error": {
+                        "message": "Rate limit exceeded",
+                        "type": "RateLimitError"
+                    }
+                }
+            )
+        
+        # Add current request
+        self.clients[client_id].append(now)
+        
+        # Process request
+        response = await call_next(request)
+        return response
