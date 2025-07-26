@@ -1,0 +1,129 @@
+TagName,TagType,DataType,InitialValue,Description,AlarmEnabled,LogEnabled
+SystemMonitor.Summary.TotalSystems,HMI,DINT,10,"Total monitored systems",FALSE,TRUE
+SystemMonitor.Summary.OnlineSystems,HMI,DINT,0,"Online systems count",TRUE,TRUE
+SystemMonitor.Summary.SystemsWithWarnings,HMI,DINT,0,"Systems with warning conditions",TRUE,TRUE
+SystemMonitor.Summary.SystemsWithCritical,HMI,DINT,0,"Systems with critical conditions",TRUE,TRUE
+SystemMonitor.Summary.LastUpdate,HMI,STRING,""","Last monitoring cycle timestamp",FALSE,TRUE
+SystemMonitor_EW305DR01.Heartbeat.IsOnline,HMI,BOOL,0,"Directory server online status",TRUE,TRUE
+SystemMonitor_EW305DR01.Heartbeat.ResponseTime,HMI,DINT,0,"Directory server response time ms",FALSE,TRUE
+SystemMonitor_EW305DR01.Heartbeat.LastUpdate,HMI,STRING,""","Directory server last heartbeat",FALSE,TRUE
+SystemMonitor_EW305DR01.Services.FactoryTalk_Directory.IsRunning,HMI,BOOL,0,"FT Directory service status",TRUE,TRUE
+SystemMonitor_EW305DR01.Services.FactoryTalk_Gateway.IsRunning,HMI,BOOL,0,"FT Gateway service status",TRUE,TRUE
+SystemMonitor_EW305DR01.Services.SQL_Server_MSSQLSERVER.IsRunning,HMI,BOOL,0,"SQL Server service status",TRUE,TRUE
+SystemMonitor_EW305DR01.Disk.C.TotalGB,HMI,REAL,0.0,"Directory server C: total capacity GB",FALSE,TRUE
+SystemMonitor_EW305DR01.Disk.C.UsedGB,HMI,REAL,0.0,"Directory server C: used space GB",FALSE,TRUE
+SystemMonitor_EW305DR01.Disk.C.FreeGB,HMI,REAL,0.0,"Directory server C: free space GB",FALSE,TRUE
+SystemMonitor_EW305DR01.Disk.C.UsedPercent,HMI,REAL,0.0,"Directory server C: usage percentage",TRUE,TRUE
+SystemMonitor_EW305DR01.Disk.C.AlarmState,HMI,STRING,""","Directory server C: alarm state",FALSE,TRUE
+SystemMonitor_EW305DR01.Disk.C.LastUpdate,HMI,STRING,""","Directory server C: last disk check",FALSE,TRUE
+SystemMonitor_EW305APP01.Heartbeat.IsOnline,HMI,BOOL,0,"Primary server online status",TRUE,TRUE
+SystemMonitor_EW305APP01.Heartbeat.ResponseTime,HMI,DINT,0,"Primary server response time ms",FALSE,TRUE
+SystemMonitor_EW305APP01.Heartbeat.LastUpdate,HMI,STRING,""","Primary server last heartbeat",FALSE,TRUE
+SystemMonitor_EW305APP01.Services.FactoryTalk_View_SE_Server.IsRunning,HMI,BOOL,0,"FT View SE Server service status",TRUE,TRUE
+SystemMonitor_EW305APP01.Services.FactoryTalk_Alarm_and_Events.IsRunning,HMI,BOOL,0,"FT Alarm and Events service status",TRUE,TRUE
+SystemMonitor_EW305APP01.Services.FactoryTalk_Gateway.IsRunning,HMI,BOOL,0,"FT Gateway service status",TRUE,TRUE
+SystemMonitor_EW305APP01.Services.RSLinx_Enterprise.IsRunning,HMI,BOOL,0,"RSLinx Enterprise service status",TRUE,TRUE
+SystemMonitor_EW305APP01.Disk.C.TotalGB,HMI,REAL,0.0,"Primary server C: total capacity GB",FALSE,TRUE
+SystemMonitor_EW305APP01.Disk.C.UsedGB,HMI,REAL,0.0,"Primary server C: used space GB",FALSE,TRUE
+SystemMonitor_EW305APP01.Disk.C.FreeGB,HMI,REAL,0.0,"Primary server C: free space GB",FALSE,TRUE
+SystemMonitor_EW305APP01.Disk.C.UsedPercent,HMI,REAL,0.0,"Primary server C: usage percentage",TRUE,TRUE
+SystemMonitor_EW305APP01.Disk.C.AlarmState,HMI,STRING,""","Primary server C: alarm state",FALSE,TRUE
+SystemMonitor_EW305APP01.Disk.C.LastUpdate,HMI,STRING,""","Primary server C: last disk check",FALSE,TRUE
+SystemMonitor_EW305APP02.Heartbeat.IsOnline,HMI,BOOL,0,"Secondary server online status",TRUE,TRUE
+SystemMonitor_EW305APP02.Heartbeat.ResponseTime,HMI,DINT,0,"Secondary server response time ms",FALSE,TRUE
+SystemMonitor_EW305APP02.Heartbeat.LastUpdate,HMI,STRING,""","Secondary server last heartbeat",FALSE,TRUE
+SystemMonitor_EW305APP02.Services.FactoryTalk_View_SE_Server.IsRunning,HMI,BOOL,0,"FT View SE Server service status",TRUE,TRUE
+SystemMonitor_EW305APP02.Services.FactoryTalk_Alarm_and_Events.IsRunning,HMI,BOOL,0,"FT Alarm and Events service status",TRUE,TRUE
+SystemMonitor_EW305APP02.Services.FactoryTalk_Gateway.IsRunning,HMI,BOOL,0,"FT Gateway service status",TRUE,TRUE
+SystemMonitor_EW305APP02.Services.RSLinx_Enterprise.IsRunning,HMI,BOOL,0,"RSLinx Enterprise service status",TRUE,TRUE
+SystemMonitor_EW305APP02.Disk.C.TotalGB,HMI,REAL,0.0,"Secondary server C: total capacity GB",FALSE,TRUE
+SystemMonitor_EW305APP02.Disk.C.UsedGB,HMI,REAL,0.0,"Secondary server C: used space GB",FALSE,TRUE
+SystemMonitor_EW305APP02.Disk.C.FreeGB,HMI,REAL,0.0,"Secondary server C: free space GB",FALSE,TRUE
+SystemMonitor_EW305APP02.Disk.C.UsedPercent,HMI,REAL,0.0,"Secondary server C: usage percentage",TRUE,TRUE
+SystemMonitor_EW305APP02.Disk.C.AlarmState,HMI,STRING,""","Secondary server C: alarm state",FALSE,TRUE
+SystemMonitor_EW305APP02.Disk.C.LastUpdate,HMI,STRING,""","Secondary server C: last disk check",FALSE,TRUE
+SystemMonitor_EW305HIST01.Heartbeat.IsOnline,HMI,BOOL,0,"Historian server online status",TRUE,TRUE
+SystemMonitor_EW305HIST01.Heartbeat.ResponseTime,HMI,DINT,0,"Historian server response time ms",FALSE,TRUE
+SystemMonitor_EW305HIST01.Heartbeat.LastUpdate,HMI,STRING,""","Historian server last heartbeat",FALSE,TRUE
+SystemMonitor_EW305HIST01.Services.FactoryTalk_Historian_Server.IsRunning,HMI,BOOL,0,"FT Historian Server service status",TRUE,TRUE
+SystemMonitor_EW305HIST01.Services.FactoryTalk_Gateway.IsRunning,HMI,BOOL,0,"FT Gateway service status",TRUE,TRUE
+SystemMonitor_EW305HIST01.Services.SQL_Server_FTHISTORIAN.IsRunning,HMI,BOOL,0,"SQL Server FTHISTORIAN service status",TRUE,TRUE
+SystemMonitor_EW305HIST01.Disk.C.TotalGB,HMI,REAL,0.0,"Historian server C: total capacity GB",FALSE,TRUE
+SystemMonitor_EW305HIST01.Disk.C.UsedGB,HMI,REAL,0.0,"Historian server C: used space GB",FALSE,TRUE
+SystemMonitor_EW305HIST01.Disk.C.FreeGB,HMI,REAL,0.0,"Historian server C: free space GB",FALSE,TRUE
+SystemMonitor_EW305HIST01.Disk.C.UsedPercent,HMI,REAL,0.0,"Historian server C: usage percentage",TRUE,TRUE
+SystemMonitor_EW305HIST01.Disk.C.AlarmState,HMI,STRING,""","Historian server C: alarm state",FALSE,TRUE
+SystemMonitor_EW305HIST01.Disk.C.LastUpdate,HMI,STRING,""","Historian server C: last disk check",FALSE,TRUE
+SystemMonitor_EW305HIST01.Disk.D.TotalGB,HMI,REAL,0.0,"Historian server D: total capacity GB",FALSE,TRUE
+SystemMonitor_EW305HIST01.Disk.D.UsedGB,HMI,REAL,0.0,"Historian server D: used space GB",FALSE,TRUE
+SystemMonitor_EW305HIST01.Disk.D.FreeGB,HMI,REAL,0.0,"Historian server D: free space GB",FALSE,TRUE
+SystemMonitor_EW305HIST01.Disk.D.UsedPercent,HMI,REAL,0.0,"Historian server D: usage percentage",TRUE,TRUE
+SystemMonitor_EW305HIST01.Disk.D.AlarmState,HMI,STRING,""","Historian server D: alarm state",FALSE,TRUE
+SystemMonitor_EW305HIST01.Disk.D.LastUpdate,HMI,STRING,""","Historian server D: last disk check",FALSE,TRUE
+SystemMonitor_EW305EWS01.Heartbeat.IsOnline,HMI,BOOL,0,"Engineering workstation online status",TRUE,TRUE
+SystemMonitor_EW305EWS01.Heartbeat.ResponseTime,HMI,DINT,0,"Engineering workstation response time ms",FALSE,TRUE
+SystemMonitor_EW305EWS01.Heartbeat.LastUpdate,HMI,STRING,""","Engineering workstation last heartbeat",FALSE,TRUE
+SystemMonitor_EW305EWS01.Services.FactoryTalk_Gateway.IsRunning,HMI,BOOL,0,"FT Gateway service status",TRUE,TRUE
+SystemMonitor_EW305EWS01.Services.RSLinx.IsRunning,HMI,BOOL,0,"RSLinx service status",TRUE,TRUE
+SystemMonitor_EW305EWS01.Disk.C.TotalGB,HMI,REAL,0.0,"Engineering workstation C: total capacity GB",FALSE,TRUE
+SystemMonitor_EW305EWS01.Disk.C.UsedGB,HMI,REAL,0.0,"Engineering workstation C: used space GB",FALSE,TRUE
+SystemMonitor_EW305EWS01.Disk.C.FreeGB,HMI,REAL,0.0,"Engineering workstation C: free space GB",FALSE,TRUE
+SystemMonitor_EW305EWS01.Disk.C.UsedPercent,HMI,REAL,0.0,"Engineering workstation C: usage percentage",TRUE,TRUE
+SystemMonitor_EW305EWS01.Disk.C.AlarmState,HMI,STRING,""","Engineering workstation C: alarm state",FALSE,TRUE
+SystemMonitor_EW305EWS01.Disk.C.LastUpdate,HMI,STRING,""","Engineering workstation C: last disk check",FALSE,TRUE
+SystemMonitor_EW305AD01.Heartbeat.IsOnline,HMI,BOOL,0,"Domain controller online status",TRUE,TRUE
+SystemMonitor_EW305AD01.Heartbeat.ResponseTime,HMI,DINT,0,"Domain controller response time ms",FALSE,TRUE
+SystemMonitor_EW305AD01.Heartbeat.LastUpdate,HMI,STRING,""","Domain controller last heartbeat",FALSE,TRUE
+SystemMonitor_EW305AD01.Services.Active_Directory_Domain_Services.IsRunning,HMI,BOOL,0,"AD Domain Services status",TRUE,TRUE
+SystemMonitor_EW305AD01.Services.DNS_Server.IsRunning,HMI,BOOL,0,"DNS Server service status",TRUE,TRUE
+SystemMonitor_EW305AD01.Services.Kerberos_Key_Distribution_Center.IsRunning,HMI,BOOL,0,"Kerberos KDC service status",TRUE,TRUE
+SystemMonitor_EW305AD01.Disk.C.TotalGB,HMI,REAL,0.0,"Domain controller C: total capacity GB",FALSE,TRUE
+SystemMonitor_EW305AD01.Disk.C.UsedGB,HMI,REAL,0.0,"Domain controller C: used space GB",FALSE,TRUE
+SystemMonitor_EW305AD01.Disk.C.FreeGB,HMI,REAL,0.0,"Domain controller C: free space GB",FALSE,TRUE
+SystemMonitor_EW305AD01.Disk.C.UsedPercent,HMI,REAL,0.0,"Domain controller C: usage percentage",TRUE,TRUE
+SystemMonitor_EW305AD01.Disk.C.AlarmState,HMI,STRING,""","Domain controller C: alarm state",FALSE,TRUE
+SystemMonitor_EW305AD01.Disk.C.LastUpdate,HMI,STRING,""","Domain controller C: last disk check",FALSE,TRUE
+SystemMonitor_EW305OWS01.Heartbeat.IsOnline,HMI,BOOL,0,"Operator workstation 1 online status",TRUE,TRUE
+SystemMonitor_EW305OWS01.Heartbeat.ResponseTime,HMI,DINT,0,"Operator workstation 1 response time ms",FALSE,TRUE
+SystemMonitor_EW305OWS01.Heartbeat.LastUpdate,HMI,STRING,""","Operator workstation 1 last heartbeat",FALSE,TRUE
+SystemMonitor_EW305OWS01.Services.FactoryTalk_View_SE_Client.IsRunning,HMI,BOOL,0,"FT View SE Client service status",TRUE,TRUE
+SystemMonitor_EW305OWS01.Services.FactoryTalk_Gateway.IsRunning,HMI,BOOL,0,"FT Gateway service status",TRUE,TRUE
+SystemMonitor_EW305OWS01.Disk.C.TotalGB,HMI,REAL,0.0,"Operator workstation 1 C: total capacity GB",FALSE,TRUE
+SystemMonitor_EW305OWS01.Disk.C.UsedGB,HMI,REAL,0.0,"Operator workstation 1 C: used space GB",FALSE,TRUE
+SystemMonitor_EW305OWS01.Disk.C.FreeGB,HMI,REAL,0.0,"Operator workstation 1 C: free space GB",FALSE,TRUE
+SystemMonitor_EW305OWS01.Disk.C.UsedPercent,HMI,REAL,0.0,"Operator workstation 1 C: usage percentage",TRUE,TRUE
+SystemMonitor_EW305OWS01.Disk.C.AlarmState,HMI,STRING,""","Operator workstation 1 C: alarm state",FALSE,TRUE
+SystemMonitor_EW305OWS01.Disk.C.LastUpdate,HMI,STRING,""","Operator workstation 1 C: last disk check",FALSE,TRUE
+SystemMonitor_EW305OWS02.Heartbeat.IsOnline,HMI,BOOL,0,"Operator workstation 2 online status",TRUE,TRUE
+SystemMonitor_EW305OWS02.Heartbeat.ResponseTime,HMI,DINT,0,"Operator workstation 2 response time ms",FALSE,TRUE
+SystemMonitor_EW305OWS02.Heartbeat.LastUpdate,HMI,STRING,""","Operator workstation 2 last heartbeat",FALSE,TRUE
+SystemMonitor_EW305OWS02.Services.FactoryTalk_View_SE_Client.IsRunning,HMI,BOOL,0,"FT View SE Client service status",TRUE,TRUE
+SystemMonitor_EW305OWS02.Services.FactoryTalk_Gateway.IsRunning,HMI,BOOL,0,"FT Gateway service status",TRUE,TRUE
+SystemMonitor_EW305OWS02.Disk.C.TotalGB,HMI,REAL,0.0,"Operator workstation 2 C: total capacity GB",FALSE,TRUE
+SystemMonitor_EW305OWS02.Disk.C.UsedGB,HMI,REAL,0.0,"Operator workstation 2 C: used space GB",FALSE,TRUE
+SystemMonitor_EW305OWS02.Disk.C.FreeGB,HMI,REAL,0.0,"Operator workstation 2 C: free space GB",FALSE,TRUE
+SystemMonitor_EW305OWS02.Disk.C.UsedPercent,HMI,REAL,0.0,"Operator workstation 2 C: usage percentage",TRUE,TRUE
+SystemMonitor_EW305OWS02.Disk.C.AlarmState,HMI,STRING,""","Operator workstation 2 C: alarm state",FALSE,TRUE
+SystemMonitor_EW305OWS02.Disk.C.LastUpdate,HMI,STRING,""","Operator workstation 2 C: last disk check",FALSE,TRUE
+SystemMonitor_EW305OWS03.Heartbeat.IsOnline,HMI,BOOL,0,"Operator workstation 3 online status",TRUE,TRUE
+SystemMonitor_EW305OWS03.Heartbeat.ResponseTime,HMI,DINT,0,"Operator workstation 3 response time ms",FALSE,TRUE
+SystemMonitor_EW305OWS03.Heartbeat.LastUpdate,HMI,STRING,""","Operator workstation 3 last heartbeat",FALSE,TRUE
+SystemMonitor_EW305OWS03.Services.FactoryTalk_View_SE_Client.IsRunning,HMI,BOOL,0,"FT View SE Client service status",TRUE,TRUE
+SystemMonitor_EW305OWS03.Services.FactoryTalk_Gateway.IsRunning,HMI,BOOL,0,"FT Gateway service status",TRUE,TRUE
+SystemMonitor_EW305OWS03.Disk.C.TotalGB,HMI,REAL,0.0,"Operator workstation 3 C: total capacity GB",FALSE,TRUE
+SystemMonitor_EW305OWS03.Disk.C.UsedGB,HMI,REAL,0.0,"Operator workstation 3 C: used space GB",FALSE,TRUE
+SystemMonitor_EW305OWS03.Disk.C.FreeGB,HMI,REAL,0.0,"Operator workstation 3 C: free space GB",FALSE,TRUE
+SystemMonitor_EW305OWS03.Disk.C.UsedPercent,HMI,REAL,0.0,"Operator workstation 3 C: usage percentage",TRUE,TRUE
+SystemMonitor_EW305OWS03.Disk.C.AlarmState,HMI,STRING,""","Operator workstation 3 C: alarm state",FALSE,TRUE
+SystemMonitor_EW305OWS03.Disk.C.LastUpdate,HMI,STRING,""","Operator workstation 3 C: last disk check",FALSE,TRUE
+SystemMonitor_EW305JH01.Heartbeat.IsOnline,HMI,BOOL,0,"DMZ jump host online status",TRUE,TRUE
+SystemMonitor_EW305JH01.Heartbeat.ResponseTime,HMI,DINT,0,"DMZ jump host response time ms",FALSE,TRUE
+SystemMonitor_EW305JH01.Heartbeat.LastUpdate,HMI,STRING,""","DMZ jump host last heartbeat",FALSE,TRUE
+SystemMonitor_EW305JH01.Services.TermService.IsRunning,HMI,BOOL,0,"Remote Desktop Services status",TRUE,TRUE
+SystemMonitor_EW305JH01.Services.MpsSvc.IsRunning,HMI,BOOL,0,"Windows Defender Service status",TRUE,TRUE
+SystemMonitor_EW305JH01.Disk.C.TotalGB,HMI,REAL,0.0,"DMZ jump host C: total capacity GB",FALSE,TRUE
+SystemMonitor_EW305JH01.Disk.C.UsedGB,HMI,REAL,0.0,"DMZ jump host C: used space GB",FALSE,TRUE
+SystemMonitor_EW305JH01.Disk.C.FreeGB,HMI,REAL,0.0,"DMZ jump host C: free space GB",FALSE,TRUE
+SystemMonitor_EW305JH01.Disk.C.UsedPercent,HMI,REAL,0.0,"DMZ jump host C: usage percentage",TRUE,TRUE
+SystemMonitor_EW305JH01.Disk.C.AlarmState,HMI,STRING,""","DMZ jump host C: alarm state",FALSE,TRUE
+SystemMonitor_EW305JH01.Disk.C.LastUpdate,HMI,STRING,""","DMZ jump host C: last disk check",FALSE,TRUE

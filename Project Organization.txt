@@ -1,0 +1,341 @@
+# Frontend Module Structure
+
+## Project Organization
+
+```
+frontend/
+├── src/
+│   ├── modules/
+│   │   ├── core/                    # Core functionality
+│   │   │   ├── components/
+│   │   │   │   ├── Layout.tsx
+│   │   │   │   ├── Navigation.tsx
+│   │   │   │   ├── LoadingSpinner.tsx
+│   │   │   │   └── ErrorBoundary.tsx
+│   │   │   ├── hooks/
+│   │   │   │   ├── useApi.ts
+│   │   │   │   ├── useAuth.ts
+│   │   │   │   └── useWebSocket.ts
+│   │   │   ├── services/
+│   │   │   │   ├── api.service.ts
+│   │   │   │   └── websocket.service.ts
+│   │   │   └── types/
+│   │   │       └── common.types.ts
+│   │   │
+│   │   ├── dashboard/               # Dashboard Module
+│   │   │   ├── components/
+│   │   │   │   ├── SystemDashboard.tsx
+│   │   │   │   ├── MetricsCards.tsx
+│   │   │   │   ├── ActivityFeed.tsx
+│   │   │   │   └── QuickActions.tsx
+│   │   │   ├── hooks/
+│   │   │   │   └── useDashboardMetrics.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── tanks/                   # Tank Management Module
+│   │   │   ├── components/
+│   │   │   │   ├── TankManagement.tsx
+│   │   │   │   ├── TankGauging.tsx
+│   │   │   │   ├── StrappingTable.tsx
+│   │   │   │   ├── TankInventory.tsx
+│   │   │   │   ├── GaugingHistory.tsx
+│   │   │   │   └── TankVisualization.tsx
+│   │   │   ├── hooks/
+│   │   │   │   ├── useTanks.ts
+│   │   │   │   ├── useGauging.ts
+│   │   │   │   └── useStrapping.ts
+│   │   │   ├── services/
+│   │   │   │   └── tank.service.ts
+│   │   │   └── types/
+│   │   │       └── tank.types.ts
+│   │   │
+│   │   ├── loading/                 # Loading Operations Module
+│   │   │   ├── components/
+│   │   │   │   ├── LoadingBayDashboard.tsx
+│   │   │   │   ├── TruckLoading.tsx
+│   │   │   │   ├── RailLoading.tsx
+│   │   │   │   ├── BargeLoading.tsx
+│   │   │   │   ├── LoadingControl.tsx
+│   │   │   │   └── BayStatus.tsx
+│   │   │   ├── hooks/
+│   │   │   │   ├── useLoadingBays.ts
+│   │   │   │   └── useLoadingOperations.ts
+│   │   │   └── services/
+│   │   │       └── loading.service.ts
+│   │   │
+│   │   ├── transactions/            # Transaction Module
+│   │   │   ├── components/
+│   │   │   │   ├── TransactionList.tsx
+│   │   │   │   ├── TransactionDetail.tsx
+│   │   │   │   ├── BOLGenerator.tsx
+│   │   │   │   └── CustodyTransfer.tsx
+│   │   │   ├── hooks/
+│   │   │   │   └── useTransactions.ts
+│   │   │   └── services/
+│   │   │       └── transaction.service.ts
+│   │   │
+│   │   ├── hardware/                # Hardware Integration Module
+│   │   │   ├── components/
+│   │   │   │   ├── PLCConfiguration.tsx
+│   │   │   │   ├── ScaleIntegration.tsx
+│   │   │   │   ├── RFIDManagement.tsx
+│   │   │   │   ├── PrinterSetup.tsx
+│   │   │   │   └── HardwareStatus.tsx
+│   │   │   ├── hooks/
+│   │   │   │   ├── usePLC.ts
+│   │   │   │   └── useHardware.ts
+│   │   │   └── services/
+│   │   │       └── hardware.service.ts
+│   │   │
+│   │   ├── reports/                 # Reporting Module
+│   │   │   ├── components/
+│   │   │   │   ├── ReportsDashboard.tsx
+│   │   │   │   ├── GaugeReport.tsx
+│   │   │   │   ├── ReconciliationReport.tsx
+│   │   │   │   ├── CustodyTransferReport.tsx
+│   │   │   │   └── CustomReportBuilder.tsx
+│   │   │   ├── hooks/
+│   │   │   │   └── useReports.ts
+│   │   │   └── services/
+│   │   │       └── report.service.ts
+│   │   │
+│   │   ├── maintenance/             # Maintenance Module
+│   │   │   ├── components/
+│   │   │   │   ├── MaintenanceManagement.tsx
+│   │   │   │   ├── WorkOrderList.tsx
+│   │   │   │   ├── EquipmentStatus.tsx
+│   │   │   │   ├── MaintenanceSchedule.tsx
+│   │   │   │   └── MaintenanceHistory.tsx
+│   │   │   ├── hooks/
+│   │   │   │   └── useMaintenance.ts
+│   │   │   └── services/
+│   │   │       └── maintenance.service.ts
+│   │   │
+│   │   ├── safety/                  # Safety & Compliance Module
+│   │   │   ├── components/
+│   │   │   │   ├── CausticHandling.tsx
+│   │   │   │   ├── SafetyChecklist.tsx
+│   │   │   │   ├── EmergencyProcedures.tsx
+│   │   │   │   └── ComplianceMonitoring.tsx
+│   │   │   ├── hooks/
+│   │   │   │   └── useSafety.ts
+│   │   │   └── services/
+│   │   │       └── safety.service.ts
+│   │   │
+│   │   ├── monitoring/              # Monitoring & Alarms Module
+│   │   │   ├── components/
+│   │   │   │   ├── AlarmSystem.tsx
+│   │   │   │   ├── NotificationCenter.tsx
+│   │   │   │   ├── RealTimeMonitoring.tsx
+│   │   │   │   └── AlarmHistory.tsx
+│   │   │   ├── hooks/
+│   │   │   │   ├── useAlarms.ts
+│   │   │   │   └── useNotifications.ts
+│   │   │   └── services/
+│   │   │       └── monitoring.service.ts
+│   │   │
+│   │   └── admin/                   # Administration Module
+│   │       ├── components/
+│   │       │   ├── UserManagement.tsx
+│   │       │   ├── SystemConfiguration.tsx
+│   │       │   ├── BackupRecovery.tsx
+│   │       │   ├── AuditLogs.tsx
+│   │       │   └── RolePermissions.tsx
+│   │       ├── hooks/
+│   │       │   ├── useUsers.ts
+│   │       │   └── useSystemConfig.ts
+│   │       └── services/
+│   │           └── admin.service.ts
+│   │
+│   ├── App.tsx                      # Main application component
+│   ├── Router.tsx                   # Application routing
+│   └── index.tsx                    # Entry point
+```
+
+## Module Integration Guide
+
+### 1. Core Module
+```typescript
+// modules/core/components/Layout.tsx
+import React from 'react';
+import Navigation from './Navigation';
+import { useAuth } from '../hooks/useAuth';
+
+export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { user } = useAuth();
+  
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <Navigation user={user} />
+      <main className="flex-1">
+        {children}
+      </main>
+    </div>
+  );
+};
+```
+
+### 2. Module Index Pattern
+Each module should have an index.ts file that exports its public API:
+
+```typescript
+// modules/tanks/index.ts
+export { TankManagement } from './components/TankManagement';
+export { TankGauging } from './components/TankGauging';
+export { StrappingTable } from './components/StrappingTable';
+export { useTanks, useGauging, useStrapping } from './hooks';
+export type { Tank, GaugingRecord, StrappingEntry } from './types/tank.types';
+```
+
+### 3. Routing Structure
+```typescript
+// Router.tsx
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { Layout } from './modules/core/components/Layout';
+
+// Module imports
+import { SystemDashboard } from './modules/dashboard';
+import { TankManagement, TankGauging, StrappingTable } from './modules/tanks';
+import { LoadingBayDashboard } from './modules/loading';
+import { TransactionList } from './modules/transactions';
+import { MaintenanceManagement } from './modules/maintenance';
+import { CausticHandling } from './modules/safety';
+import { AlarmSystem } from './modules/monitoring';
+import { UserManagement, SystemConfiguration, BackupRecovery } from './modules/admin';
+
+export const Router: React.FC = () => {
+  return (
+    <Layout>
+      <Routes>
+        {/* Dashboard */}
+        <Route path="/" element={<SystemDashboard />} />
+        
+        {/* Tank Management */}
+        <Route path="/tanks" element={<TankManagement />} />
+        <Route path="/tanks/gauging" element={<TankGauging />} />
+        <Route path="/tanks/strapping" element={<StrappingTable />} />
+        
+        {/* Loading Operations */}
+        <Route path="/loading" element={<LoadingBayDashboard />} />
+        
+        {/* Transactions */}
+        <Route path="/transactions" element={<TransactionList />} />
+        
+        {/* Maintenance */}
+        <Route path="/maintenance" element={<MaintenanceManagement />} />
+        
+        {/* Safety */}
+        <Route path="/safety/caustic" element={<CausticHandling />} />
+        
+        {/* Monitoring */}
+        <Route path="/alarms" element={<AlarmSystem />} />
+        
+        {/* Admin */}
+        <Route path="/admin/users" element={<UserManagement />} />
+        <Route path="/admin/config" element={<SystemConfiguration />} />
+        <Route path="/admin/backup" element={<BackupRecovery />} />
+      </Routes>
+    </Layout>
+  );
+};
+```
+
+### 4. State Management Integration
+```typescript
+// store/index.ts
+import { configureStore } from '@reduxjs/toolkit';
+import tankReducer from '../modules/tanks/store/tankSlice';
+import loadingReducer from '../modules/loading/store/loadingSlice';
+import alarmReducer from '../modules/monitoring/store/alarmSlice';
+// ... other reducers
+
+export const store = configureStore({
+  reducer: {
+    tanks: tankReducer,
+    loading: loadingReducer,
+    alarms: alarmReducer,
+    // ... other reducers
+  },
+});
+```
+
+### 5. WebSocket Integration
+```typescript
+// modules/core/services/websocket.service.ts
+export class WebSocketService {
+  private ws: WebSocket | null = null;
+  
+  connect(url: string) {
+    this.ws = new WebSocket(url);
+    
+    this.ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      this.handleMessage(data);
+    };
+  }
+  
+  subscribe(topic: string) {
+    this.send({ type: 'subscribe', topic });
+  }
+  
+  private handleMessage(data: any) {
+    // Route messages to appropriate modules
+    switch (data.type) {
+      case 'tank_update':
+        // Dispatch to tank module
+        break;
+      case 'alarm':
+        // Dispatch to monitoring module
+        break;
+      // ... other message types
+    }
+  }
+}
+```
+
+## Module Dependencies
+
+### Shared Dependencies
+- **Core Module**: Used by all other modules
+- **Monitoring Module**: Used by tanks, loading, and safety modules for alarms
+- **Hardware Module**: Used by loading and tanks for PLC/scale integration
+
+### Integration Points
+1. **Tank → Loading**: Tank availability for loading operations
+2. **Loading → Transactions**: Creating transactions from loading operations
+3. **Transactions → Reports**: Generating reports from transaction data
+4. **Maintenance → All Equipment Modules**: Equipment status affects operations
+5. **Safety → All Operation Modules**: Safety compliance affects all operations
+
+## Development Guidelines
+
+### 1. Module Independence
+- Each module should be self-contained
+- Use dependency injection for cross-module communication
+- Define clear interfaces between modules
+
+### 2. Naming Conventions
+- Components: PascalCase (e.g., `TankManagement.tsx`)
+- Hooks: camelCase with 'use' prefix (e.g., `useTanks.ts`)
+- Services: camelCase with '.service' suffix (e.g., `tank.service.ts`)
+- Types: PascalCase with '.types' suffix (e.g., `tank.types.ts`)
+
+### 3. Testing Structure
+```
+modules/tanks/
+├── __tests__/
+│   ├── components/
+│   │   └── TankManagement.test.tsx
+│   ├── hooks/
+│   │   └── useTanks.test.ts
+│   └── services/
+│       └── tank.service.test.ts
+```
+
+### 4. Documentation
+Each module should have a README.md with:
+- Module purpose and functionality
+- Component descriptions
+- API documentation
+- Usage examples

@@ -1,0 +1,148 @@
+Project Organization
+frontend/
+├── src/
+│   ├── modules/
+│   │   ├── core/                    # Core functionality
+│   │   │   ├── components/
+│   │   │   │   ├── Layout.tsx
+│   │   │   │   ├── Navigation.tsx
+│   │   │   │   ├── LoadingSpinner.tsx
+│   │   │   │   └── ErrorBoundary.tsx
+│   │   │   ├── hooks/
+│   │   │   │   ├── useApi.ts
+│   │   │   │   ├── useAuth.ts
+│   │   │   │   └── useWebSocket.ts
+│   │   │   ├── services/
+│   │   │   │   ├── api.service.ts
+│   │   │   │   └── websocket.service.ts
+│   │   │   └── types/
+│   │   │       └── common.types.ts
+│   │   │
+│   │   ├── dashboard/               # Dashboard Module
+│   │   │   ├── components/
+│   │   │   │   ├── SystemDashboard.tsx
+│   │   │   │   ├── MetricsCards.tsx
+│   │   │   │   ├── ActivityFeed.tsx
+│   │   │   │   └── QuickActions.tsx
+│   │   │   ├── hooks/
+│   │   │   │   └── useDashboardMetrics.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── tanks/                   # Tank Management Module
+│   │   │   ├── components/
+│   │   │   │   ├── TankManagement.tsx
+│   │   │   │   ├── TankGauging.tsx
+│   │   │   │   ├── StrappingTable.tsx
+│   │   │   │   ├── TankInventory.tsx
+│   │   │   │   ├── GaugingHistory.tsx
+│   │   │   │   └── TankVisualization.tsx
+│   │   │   ├── hooks/
+│   │   │   │   ├── useTanks.ts
+│   │   │   │   ├── useGauging.ts
+│   │   │   │   └── useStrapping.ts
+│   │   │   ├── services/
+│   │   │   │   └── tank.service.ts
+│   │   │   └── types/
+│   │   │       └── tank.types.ts
+│   │   │
+│   │   ├── loading/                 # Loading Operations Module
+│   │   │   ├── components/
+│   │   │   │   ├── LoadingBayDashboard.tsx
+│   │   │   │   ├── TruckLoading.tsx
+│   │   │   │   ├── RailLoading.tsx
+│   │   │   │   ├── BargeLoading.tsx
+│   │   │   │   ├── LoadingControl.tsx
+│   │   │   │   └── BayStatus.tsx
+│   │   │   ├── hooks/
+│   │   │   │   ├── useLoadingBays.ts
+│   │   │   │   └── useLoadingOperations.ts
+│   │   │   └── services/
+│   │   │       └── loading.service.ts
+│   │   │
+│   │   ├── transactions/            # Transaction Module
+│   │   │   ├── components/
+│   │   │   │   ├── TransactionList.tsx
+│   │   │   │   ├── TransactionDetail.tsx
+│   │   │   │   ├── BOLGenerator.tsx
+│   │   │   │   └── CustodyTransfer.tsx
+│   │   │   ├── hooks/
+│   │   │   │   └── useTransactions.ts
+│   │   │   └── services/
+│   │   │       └── transaction.service.ts
+│   │   │
+│   │   ├── hardware/                # Hardware Integration Module
+│   │   │   ├── components/
+│   │   │   │   ├── PLCConfiguration.tsx
+│   │   │   │   ├── ScaleIntegration.tsx
+│   │   │   │   ├── RFIDManagement.tsx
+│   │   │   │   ├── PrinterSetup.tsx
+│   │   │   │   └── HardwareStatus.tsx
+│   │   │   ├── hooks/
+│   │   │   │   ├── usePLC.ts
+│   │   │   │   └── useHardware.ts
+│   │   │   └── services/
+│   │   │       └── hardware.service.ts
+│   │   │
+│   │   ├── reports/                 # Reporting Module
+│   │   │   ├── components/
+│   │   │   │   ├── ReportsDashboard.tsx
+│   │   │   │   ├── GaugeReport.tsx
+│   │   │   │   ├── ReconciliationReport.tsx
+│   │   │   │   ├── CustodyTransferReport.tsx
+│   │   │   │   └── CustomReportBuilder.tsx
+│   │   │   ├── hooks/
+│   │   │   │   └── useReports.ts
+│   │   │   └── services/
+│   │   │       └── report.service.ts
+│   │   │
+│   │   ├── maintenance/             # Maintenance Module
+│   │   │   ├── components/
+│   │   │   │   ├── MaintenanceManagement.tsx
+│   │   │   │   ├── WorkOrderList.tsx
+│   │   │   │   ├── EquipmentStatus.tsx
+│   │   │   │   ├── MaintenanceSchedule.tsx
+│   │   │   │   └── MaintenanceHistory.tsx
+│   │   │   ├── hooks/
+│   │   │   │   └── useMaintenance.ts
+│   │   │   └── services/
+│   │   │       └── maintenance.service.ts
+│   │   │
+│   │   ├── safety/                  # Safety & Compliance Module
+│   │   │   ├── components/
+│   │   │   │   ├── CausticHandling.tsx
+│   │   │   │   ├── SafetyChecklist.tsx
+│   │   │   │   ├── EmergencyProcedures.tsx
+│   │   │   │   └── ComplianceMonitoring.tsx
+│   │   │   ├── hooks/
+│   │   │   │   └── useSafety.ts
+│   │   │   └── services/
+│   │   │       └── safety.service.ts
+│   │   │
+│   │   ├── monitoring/              # Monitoring & Alarms Module
+│   │   │   ├── components/
+│   │   │   │   ├── AlarmSystem.tsx
+│   │   │   │   ├── NotificationCenter.tsx
+│   │   │   │   ├── RealTimeMonitoring.tsx
+│   │   │   │   └── AlarmHistory.tsx
+│   │   │   ├── hooks/
+│   │   │   │   ├── useAlarms.ts
+│   │   │   │   └── useNotifications.ts
+│   │   │   └── services/
+│   │   │       └── monitoring.service.ts
+│   │   │
+│   │   └── admin/                   # Administration Module
+│   │       ├── components/
+│   │       │   ├── UserManagement.tsx
+│   │       │   ├── SystemConfiguration.tsx
+│   │       │   ├── BackupRecovery.tsx
+│   │       │   ├── AuditLogs.tsx
+│   │       │   └── RolePermissions.tsx
+│   │       ├── hooks/
+│   │       │   ├── useUsers.ts
+│   │       │   └── useSystemConfig.ts
+│   │       └── services/
+│   │           └── admin.service.ts
+│   │
+│   ├── App.tsx                      # Main application component
+│   ├── Router.tsx                   # Application routing
+│   └── index.tsx                    # Entry point
