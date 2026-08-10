@@ -74,6 +74,28 @@ The `-unique.csv` file collapses those into one row each, with `Parish Count` an
 a `Parishes` column listing where they appear. For the 11/03/2026 election that's
 5,079 ballot listings → 4,064 distinct candidates.
 
+## Word document
+
+To get the same data as a formatted `.docx` — organized by parish, then by race,
+with a contact table for each — run the CSV through the Word generator:
+
+```bash
+npm install docx                                    # one time
+node make_word.js la-candidates-11-03-2026-full.csv
+```
+
+The document contains a cover page, a parish summary table (races, candidates,
+email coverage per parish), and then one section per parish starting on its own
+page. A full statewide run is a large document — roughly 5,000 candidates across
+2,750 races — so expect it to take a moment to open.
+
+For something shorter, filter at the scrape step and feed that CSV in:
+
+```bash
+python3 la_candidates.py --parish "EAST BATON ROUGE"
+node make_word.js la-candidates-11-03-2026-full.csv EBR.docx
+```
+
 ## Notes
 
 - **Coverage of emails is high but not total.** In the 11/03/2026 pull, 4,991 of
