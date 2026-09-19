@@ -1,3 +1,14 @@
 {
-  "enableAllProjectMcpServers": true
+  "enableAllProjectMcpServers": true,
+  "extraKnownMarketplaces": {
+    "continuum": {
+      "source": {
+        "source": "github",
+        "repo": "KezzyWezzy/continuum-plugin"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "continuum@continuum": true
+  }
 }

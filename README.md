@@ -11,3 +11,10 @@ This repo ships a project-scoped `.mcp.json` so any Claude Code session (local o
 
 `.claude/settings.json` sets `enableAllProjectMcpServers` so these load without a per-server approval prompt.
 Check status inside a session with `/mcp`.
+
+## Claude Code skills and commands (Continuum plugin)
+
+`.claude/settings.json` registers the private marketplace `KezzyWezzy/continuum-plugin` and enables its `continuum` plugin.
+When you trust this project folder, Claude Code installs it automatically. Skills load by description and commands are
+namespaced, for example `/continuum:bid`, `/continuum:cad`, `/continuum:pre-eng`. Run `/plugin` to see status.
+Access to the private repo is required, so sign in to git with an account that can read it.
