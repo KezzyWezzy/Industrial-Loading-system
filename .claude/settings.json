@@ -3,8 +3,8 @@
   "extraKnownMarketplaces": {
     "continuum": {
       "source": {
-        "source": "github",
-        "repo": "KezzyWezzy/continuum-plugin"
+        "source": "url",
+        "url": "https://github.com/KezzyWezzy/continuum-plugin.git"
       }
     }
   },
